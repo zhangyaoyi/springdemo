@@ -1,5 +1,7 @@
 package com.imooc.springdemo.factory.method;
 
+import com.imooc.springdemo.factory.mouse.Mouse;
+
 public class Test {
 	public static void main(String[] args) {
 		MouseFactory mouseFactory = new DellMouseFactory();

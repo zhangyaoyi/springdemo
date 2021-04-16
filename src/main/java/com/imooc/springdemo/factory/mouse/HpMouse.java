@@ -1,4 +1,4 @@
-package com.imooc.springdemo.factory.method;
+package com.imooc.springdemo.factory.mouse;
 
 public class HpMouse implements Mouse {
 

@@ -1,5 +1,7 @@
 package com.imooc.springdemo.factory.simple;
 
+import com.imooc.springdemo.factory.mouse.Mouse;
+
 public class Test {
 	
 	

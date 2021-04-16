@@ -1,4 +1,4 @@
-package com.imooc.springdemo.factory.method;
+package com.imooc.springdemo.factory.mouse;
 
 public interface Mouse {
 	
