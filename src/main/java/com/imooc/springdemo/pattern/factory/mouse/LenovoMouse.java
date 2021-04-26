@@ -1,4 +1,4 @@
-package com.imooc.springdemo.factory.mouse;
+package com.imooc.springdemo.pattern.factory.mouse;
 
 
 public class LenovoMouse implements Mouse {

@@ -1,6 +1,6 @@
-package com.imooc.springdemo.factory.simple;
+package com.imooc.springdemo.pattern.factory.simple;
 
-import com.imooc.springdemo.factory.mouse.Mouse;
+import com.imooc.springdemo.pattern.factory.mouse.Mouse;
 
 public class Test {
 	

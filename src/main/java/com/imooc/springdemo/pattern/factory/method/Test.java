@@ -1,6 +1,6 @@
-package com.imooc.springdemo.factory.method;
+package com.imooc.springdemo.pattern.factory.method;
 
-import com.imooc.springdemo.factory.mouse.Mouse;
+import com.imooc.springdemo.pattern.factory.mouse.Mouse;
 
 public class Test {
 	public static void main(String[] args) {

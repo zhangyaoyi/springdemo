@@ -1,4 +1,4 @@
-package com.imooc.springdemo.factory.keyboard;
+package com.imooc.springdemo.pattern.factory.keyboard;
 
 public class DellKeyboard implements KeyBoard {
 

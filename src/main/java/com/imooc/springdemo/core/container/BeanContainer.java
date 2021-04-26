@@ -17,10 +17,6 @@ public class BeanContainer {
 
 	private static ConcurrentHashMap<Class<?>, Object> classBean = new ConcurrentHashMap<Class<?>, Object>();
 
-	public static BeanContainer getInstance() {
-		return ContainerHolder.HOLDER.getBeanContainer();
-	}
-
 	private enum ContainerHolder {
 		HOLDER;
 
@@ -30,9 +26,13 @@ public class BeanContainer {
 			return HOLDER.beanContainer;
 		}
 	}
+	
+	public static BeanContainer getInstance() {
+		return ContainerHolder.HOLDER.getBeanContainer();
+	}
 
-	public void loadBean() {
-		Set<Class<?>> classSet = ClassUtil.getClass("com.imooc.springdemo");
+	public void loadBean(String pkg) {
+		Set<Class<?>> classSet = ClassUtil.getClass(pkg);
 		classSet.parallelStream()
 				.filter(clazz -> clazz.isAnnotationPresent(Controller.class) || clazz.isAnnotationPresent(Service.class)
 						|| clazz.isAnnotationPresent(Repository.class) || clazz.isAnnotationPresent(Component.class))
@@ -44,10 +44,5 @@ public class BeanContainer {
 					}
 				});
 
-	}
-	
-	
-	public static void main(String[] args) {
-		BeanContainer.getInstance().loadBean();
 	}
 }
