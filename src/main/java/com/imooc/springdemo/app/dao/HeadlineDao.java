@@ -1,4 +1,4 @@
-package com.imooc.springdemo.dao;
+package com.imooc.springdemo.app.dao;
 
 import com.imooc.springdemo.core.annotation.Repository;
 

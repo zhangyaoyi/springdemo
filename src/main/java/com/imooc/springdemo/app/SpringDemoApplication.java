@@ -1,4 +1,4 @@
-package com.imooc.springdemo;
+package com.imooc.springdemo.app;
 
 import com.imooc.springdemo.core.container.BeanContainer;
 

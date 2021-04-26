@@ -1,4 +1,4 @@
-package com.imooc.springdemo.service;
+package com.imooc.springdemo.app.service;
 
 import com.imooc.springdemo.core.annotation.Service;
 

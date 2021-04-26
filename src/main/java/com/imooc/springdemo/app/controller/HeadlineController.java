@@ -1,4 +1,4 @@
-package com.imooc.springdemo.controller;
+package com.imooc.springdemo.app.controller;
 
 import com.imooc.springdemo.core.annotation.Controller;
 
