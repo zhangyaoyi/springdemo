@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.imooc.springdemo.app.controller.CategoryController;
+import com.imooc.springdemo.core.container.BeanContainer;
+
 @WebServlet("/hello")
 public class DispatcherServlet extends HttpServlet {
 
@@ -24,13 +27,14 @@ public class DispatcherServlet extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		System.out.print("init");
+		BeanContainer.getInstance().loadBean("com.imooc.springdemo.app");
 		super.init();
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		count ++;
-		System.out.print(count);
+		CategoryController categoryController = (CategoryController) BeanContainer.getInstance().getBean(CategoryController.class);
+		System.out.print(count + "   " +categoryController.getCategory());
 	}
 
 }
