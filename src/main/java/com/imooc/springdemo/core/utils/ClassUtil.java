@@ -8,63 +8,59 @@ import java.util.Set;
 
 public class ClassUtil {
 
+	private static final String CLASS = "class";
+	
+	private static final String PROTOCOL_FILE = "file";
+
 	public static Set<Class<?>> getClass(String pkgName) {
 
 		Set<Class<?>> resultSet = new HashSet<Class<?>>();
 		try {
-			String pkgDirName = pkgName.replace(".", "/");
 
-			URL url = ClassUtil.class.getClassLoader().getResource(pkgDirName);
+			URL url = getClassLoader().getResource(pkgName.replace(".", "/"));
 
 			String protocol = url.getProtocol();
-			if ("file".equals(protocol)) {
+			if (PROTOCOL_FILE.equals(protocol)) {
 				String filePath = URLDecoder.decode(url.getFile(), "UTF-8");
 				findClassesByFile(pkgName, filePath, resultSet);
-
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return resultSet;
 
 	}
 
-	private static void findClassesByFile(String pkgName, String pkgPath, Set<Class<?>> resultSet) {
+	private static void findClassesByFile(String pkgName, String pkgPath, Set<Class<?>> resultSet) throws ClassNotFoundException {
+		
 		File dir = new File(pkgPath);
 
 		if (!dir.exists() || !dir.isDirectory()) {
 			return;
 		}
 
-		File[] dirfiles = dir.listFiles(pathname -> pathname.isDirectory() || pathname.getName().endsWith("class"));
+		File[] dirfiles = dir.listFiles(pathname -> pathname.isDirectory() || pathname.getName().endsWith(CLASS));
 		if (dirfiles == null || dirfiles.length == 0) {
 			return;
 		}
-
-		String className;
-		Class<?> clz;
 
 		for (File f : dirfiles) {
 			if (f.isDirectory()) {
 				findClassesByFile(pkgName + "." + f.getName(), pkgPath + "/" + f.getName(), resultSet);
 				continue;
 			}
-			className = f.getName();
+			String className = f.getName();
 			className = className.substring(0, className.length() - 6);
 
-			clz = loadClass(pkgName + "." + className);
+			Class<?> clz = getClassLoader().loadClass(pkgName + "." + className);
 			if (clz != null) {
 				resultSet.add(clz);
 			}
 		}
 	}
 
-	private static Class<?> loadClass(String fullClzName) {
-		try {
-            return Thread.currentThread().getContextClassLoader().loadClass(fullClzName);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
+	private static ClassLoader getClassLoader() {
+		return Thread.currentThread().getContextClassLoader();
 	}
+	
 }
